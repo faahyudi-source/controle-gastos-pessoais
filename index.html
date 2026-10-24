@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Controle de Gastos</title>
+</head>
+<body>
+  <h1>Controle de Gastos Pessoais</h1>
+  <p>Meu primeiro projeto de programação!</p>
+
+  <h2>Adicionar despesa</h2>
+
+  <label for="descricao">Descrição:</label>
+  <input id="descricao" type="text" placeholder="Ex.: Alimentação">
+
+  <label for="valor">Valor em reais:</label>
+  <input id="valor" type="number" placeholder="Ex.: 25">
+
+  <button onclick="adicionarGasto()">Adicionar</button>
+
+  <h2>Gastos cadastrados</h2>
+  <ul id="lista"></ul>
+
+  <h2>Total gasto: R$ <span id="total">0.00</span></h2>
+
+  <script>
+    let total = 0;
+
+    function adicionarGasto() {
+      const descricao = document.getElementById("descricao").value;
+      const valor = Number(document.getElementById("valor").value);
+
+      if (descricao.trim() === "" || valor <= 0) {
+        alert("Informe uma descrição e um valor válido.");
+        return;
+      }
+
+      const item = document.createElement("li");
+      item.textContent = descricao + " - R$ " + valor.toFixed(2);
+      document.getElementById("lista").appendChild(item);
+
+      total += valor;
+      document.getElementById("total").textContent = total.toFixed(2);
+
+      document.getElementById("descricao").value = "";
+      document.getElementById("valor").value = "";
+    }
+  </script>
+</body>
+</html>
